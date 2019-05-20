@@ -51,13 +51,13 @@ public class AuthorizationServerConfiguration implements AuthorizationServerConf
                 .userDetailsService(userDetailsService);
     }
 
-    @Bean
+    /*@Bean
     @Primary
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);
-        defaultTokenServices.setRefreshTokenValiditySeconds(0);
+        //defaultTokenServices.setRefreshTokenValiditySeconds(0);
         return defaultTokenServices;
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 package com.oauthserver.demoserver.services;
 
-import com.oauthserver.demoserver.models.AuthUserDetails;
 import com.oauthserver.demoserver.models.User;
 import com.oauthserver.demoserver.repositories.UserRepository;
 import org.slf4j.Logger;
@@ -23,11 +22,6 @@ public class UserDetailsServiceImp implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
        Optional<User> userOptional = userRepository.findByUsername(username);
-       userOptional.orElseThrow(()-> new UsernameNotFoundException("Username or Password wrong"));
-        //System.out.println(userOptional.get().toString());
-       //UserDetails userDetails = new AuthUserDetails(userOptional.get());
-       //System.out.println(userDetails.toString());
-       //new AccountStatusUserDetailsChecker().check(userDetails);
-       return userOptional.get();
+       return userOptional.orElseThrow(()-> new UsernameNotFoundException("Username or Password wrong"));
     }
 }
