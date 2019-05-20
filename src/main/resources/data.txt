@@ -1,0 +1,23 @@
+INSERT INTO oauth_client_details (client_id, client_secret, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity,refresh_token_validity, additional_information, autoapprove)
+VALUES ('client', '{bcrypt}$2a$10$gzNAZThvP81Y/glLGND2TuWzAgMgHer7GE1dfqnnodSpo1LUd/SWu', 'inventory, payment', 'READ, WRITE',
+'password, client_credentials, authorization_code, refresh_token', 'http://localhost:8080/code', 'CAN_READ, CAN_WRITE', '3600', '10000', '', 'ok');
+
+INSERT INTO permission (name) VALUES ('create_profile'), ('read_profile'), ('update_profile'), ('delete_profile');
+
+INSERT INTO role (name) VALUES ('role_admin'), ('role_operator');
+
+INSERT INTO permission_role (permission_id, role_id) VALUES
+(1,1),
+(2,1),
+(3,1),
+(4,1),
+(2,2);
+
+INSERT INTO user (id, username, password, email, enabled, account_non_expired, credentials_non_expired, account_non_locked)
+VALUES ('1', 'kakan', '{bcrypt}$2a$10$2iJVTWXZLOtmTrFvyHPdf.8qQCnolgxL1mkdyTVwwbI7CZaDtYtWS', 'kakan@email.com', '1', '0', '0', '0'),
+('2', 'ghosh', '{bcrypt}$2a$10$2iJVTWXZLOtmTrFvyHPdf.8qQCnolgxL1mkdyTVwwbI7CZaDtYtWS', 'ghosh@email.com', '1', '0', '0', '0');
+
+INSERT INTO role_user (user_id, role_id) VALUES
+(1,1),
+(1,2),
+(2,2)
