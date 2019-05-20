@@ -20,7 +20,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User implements UserDetails {
+public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -51,19 +51,6 @@ public class User implements UserDetails {
     inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
 
-    public User(){}
-    public User(User user) {
-        this.setId(user.getId());
-        this.setUsername(user.getUsername());
-        this.setPassword(user.getPassword());
-        this.setEmail(user.getEmail());
-        this.setEnabled(user.isEnabled());
-        this.setRoles(user.getRoles());
-        this.setAccountNonExpired(user.isAccountNonExpired());
-        this.setCredentialsNonExpired(user.isCredentialsNonExpired());
-        this.setAccountNonExpired(user.isAccountNonExpired());
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -85,7 +72,7 @@ public class User implements UserDetails {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
