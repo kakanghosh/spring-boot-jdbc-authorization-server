@@ -21,8 +21,14 @@ public class BasicController {
     UserRepository userRepository;
 
     @GetMapping(value = "/basic")
-    public ResponseEntity<Object> getUserInfo(HttpServletRequest httpServletRequest){
+    public ResponseEntity<Object> getUserBasicInfo(HttpServletRequest httpServletRequest){
         Principal principal = httpServletRequest.getUserPrincipal();
         return new ResponseEntity<Object>(userRepository.findByUsername(principal.getName()), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user")
+    public ResponseEntity<Object> getUserInfo(HttpServletRequest httpServletRequest){
+        Principal principal = httpServletRequest.getUserPrincipal();
+        return new ResponseEntity<Object>(userRepository.findByUsername(principal.getName()), HttpStatus.CREATED);
     }
 }
