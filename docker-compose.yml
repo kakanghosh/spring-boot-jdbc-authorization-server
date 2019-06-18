@@ -5,14 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - mysql-service
-    links:
-      - mysql-service
     environment:
-      DATABASE_HOSTNAME: jdbc:mysql://mysql-database:3307/authserver?createDatabaseIfNotExist=true
-      DATABASE_USERNAME: test
-      DATABASE_PASSWORD: 123
+      - DATABASE_HOST=localhost
+      - DATABASE_USERNAME=test
+      - DATABASE_PASSWORD=123
+      - DATABASE_NAME=authserver
+      - DATABASE_PORT=3307
     restart: on-failure
     expose:
       - "8080"
@@ -21,13 +19,12 @@ services:
 
   mysql-service:
     image: mysql:5.6
-    container_name: mysql-database
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 12345
-      MYSQL_DATABASE: authserver
-      MYSQL_USER: test
-      MYSQL_PASSWORD: 123
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_DATABASE=authserver
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=123
     expose:
       - "3306"
     ports:
