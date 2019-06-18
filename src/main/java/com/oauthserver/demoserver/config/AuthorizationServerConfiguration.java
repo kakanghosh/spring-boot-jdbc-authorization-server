@@ -47,6 +47,7 @@ public class AuthorizationServerConfiguration implements AuthorizationServerConf
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore())
+                .reuseRefreshTokens(false)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }

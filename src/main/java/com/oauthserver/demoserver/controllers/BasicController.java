@@ -17,8 +17,11 @@ import java.util.Map;
 @RestController
 public class BasicController {
 
-    @Autowired
     UserRepository userRepository;
+
+    public BasicController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping(value = "/basic")
     public ResponseEntity<Object> getUserBasicInfo(HttpServletRequest httpServletRequest){
@@ -30,5 +33,12 @@ public class BasicController {
     public ResponseEntity<Object> getUserInfo(HttpServletRequest httpServletRequest){
         Principal principal = httpServletRequest.getUserPrincipal();
         return new ResponseEntity<Object>(userRepository.findByUsername(principal.getName()), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/test-url")
+    public ResponseEntity<Object> testURL(HttpServletRequest httpServletRequest){
+        Map response = new HashMap();
+        response.putIfAbsent("name", "ghosh");
+        return ResponseEntity.ok(response);
     }
 }
